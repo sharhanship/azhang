@@ -30,6 +30,103 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
+       // تنظیمات ذرات با تم آبی تیره
+//         particlesJS("particles-js", {
+//             "particles": {
+//                 "number": {
+//                     "value": 80,
+//                     "density": {
+//                         "enable": true,
+//                         "value_area": 800
+//                     }
+//                 },
+//                 "color": {
+//                     "value": "#64ffda" // رنگ آبی روشن برای کنتراست
+//                 },
+//                 "shape": {
+//                     "type": "circle",
+//                     "stroke": {
+//                         "width": 0,
+//                         "color": "#000000"
+//                     }
+//                 },
+//                 "opacity": {
+//                     "value": 0.5,
+//                     "random": true,
+//                     "anim": {
+//                         "enable": true,
+//                         "speed": 1,
+//                         "opacity_min": 0.1,
+//                         "sync": false
+//                     }
+//                 },
+//                 "size": {
+//                     "value": 3,
+//                     "random": true,
+//                     "anim": {
+//                         "enable": true,
+//                         "speed": 2,
+//                         "size_min": 0.1,
+//                         "sync": false
+//                     }
+//                 },
+//                 "line_linked": {
+//                     "enable": true,
+//                     "distance": 150,
+//                     "color": "#1e90ff", // رنگ آبی برای خطوط اتصال
+//                     "opacity": 0.4,
+//                     "width": 1
+//                 },
+//                 "move": {
+//                     "enable": true,
+//                     "speed": 3,
+//                     "direction": "none",
+//                     "random": true,
+//                     "straight": false,
+//                     "out_mode": "out",
+//                     "bounce": false,
+//                     "attract": {
+//                         "enable": true,
+//                         "rotateX": 600,
+//                         "rotateY": 1200
+//                     }
+//                 }
+//             },
+//             "interactivity": {
+//                 "detect_on": "canvas",
+//                 "events": {
+//                     "onhover": {
+//                         "enable": true,
+//                         "mode": "grab" // تغییر به حالت grab برای اثر جذاب‌تر
+//                     },
+//                     "onclick": {
+//                         "enable": true,
+//                         "mode": "push" // با کلیک ذرات جدید اضافه می‌شوند
+//                     },
+//                     "resize": true
+//                 },
+//                 "modes": {
+//                     "grab": {
+//                         "distance": 140,
+//                         "line_linked": {
+//                             "opacity": 1
+//                         }
+//                     },
+//                     "push": {
+//                         "particles_nb": 4
+//                     }
+//                 }
+//             },
+//             "retina_detect": true
+//         });
+
+//           // جلوگیری از کشیدن تصاویر
+//   document.querySelectorAll('img').forEach(img => {
+//     img.addEventListener('dragstart', function(e) {
+//       e.preventDefault();
+//     });
+//   });
+
     
     // ======================
     // اسلایدر بنرها
@@ -41,7 +138,7 @@ document.addEventListener('DOMContentLoaded', function() {
         nextBtn: document.querySelector('.slider-next'),
         currentIndex: 0,
         interval: null,
-        duration: 5000,
+        duration: 9000,
         
         init() {
             // ایجاد نقاط اسلایدر
@@ -89,7 +186,7 @@ document.addEventListener('DOMContentLoaded', function() {
             this.slides[index].classList.add('active');
             setTimeout(() => {
                 this.slides[index].style.opacity = 1;
-            }, 10);
+            });
             
             // فعال کردن نقطه مربوطه
             this.dots[index].classList.add('active');
@@ -174,47 +271,4 @@ document.addEventListener('DOMContentLoaded', function() {
     
     window.addEventListener('scroll', animateOnScroll);
     window.addEventListener('load', animateOnScroll);
-    
-    // ======================
-    // فرم تماس
-    // ======================
-    const contactForm = document.querySelector('.contact-form form');
-    
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // اعتبارسنجی ساده
-            const nameInput = this.querySelector('input[type="text"]');
-            const emailInput = this.querySelector('input[type="email"]');
-            const messageInput = this.querySelector('textarea');
-            
-            if (!nameInput.value.trim()) {
-                alert('لطفا نام خود را وارد کنید');
-                nameInput.focus();
-                return;
-            }
-            
-            if (!emailInput.value.trim() || !isValidEmail(emailInput.value)) {
-                alert('لطفا یک ایمیل معتبر وارد کنید');
-                emailInput.focus();
-                return;
-            }
-            
-            if (!messageInput.value.trim()) {
-                alert('لطفا پیام خود را وارد کنید');
-                messageInput.focus();
-                return;
-            }
-            
-            // در اینجا می‌توانید اطلاعات فرم را ارسال کنید
-            alert('پیام شما با موفقیت ارسال شد. به زودی با شما تماس خواهیم گرفت.');
-            this.reset();
-        });
-    }
-    
-    function isValidEmail(email) {
-        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return re.test(email);
-    }
 });
