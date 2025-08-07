@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>صفحه در حال توسعه است</title>
+    <link rel="icon" type="image/svg+xml" href="/content/logo/Untitled_design__1_-removebg-preview.png">
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --primary-color: #7c3aed;
+            --text-color: #f4f4f5;
+            --glass-bg: rgba(30, 41, 59, 0.5);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @font-face {
+            font-family: 'Vazir';
+            src: url('/content/font/Vazir-Black.woff2');
+            font-display: swap;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Vazir', sans-serif;
+            font-weight: 100;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            background-image:
+                radial-gradient(at 80% 20%, hsla(189, 100%, 56%, 0.1) 0px, transparent 50%),
+                radial-gradient(at 20% 80%, hsla(271, 100%, 71%, 0.1) 0px, transparent 50%);
+        }
+
+        .glass-container {
+            width: 100%;
+            max-width: 1200px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 24px;
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--glass-shadow);
+            padding: 48px;
+            margin: auto;
+            text-align: center;
+            width: 100%;
+            max-width: 600px;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        .construction-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 24px;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        h1 {
+            font-size: 28px;
+            margin-bottom: 16px;
+            font-weight: 700;
+            background: linear-gradient(90deg, #f4f4f5, #a5b4fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            font-size: 18px;
+            margin-bottom: 24px;
+            color: #a1a1aa;
+            font-weight: 500;
+        }
+
+        .description {
+            font-size: 16px;
+            line-height: 1.7;
+            margin-bottom: 32px;
+            color: #d4d4d8;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .glass-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            color: var(--text-color);
+            font-size: 14px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .glass-button.secondary {
+            background: rgba(124, 58, 237, 0.1);
+            border: 1px solid rgba(124, 58, 237, 0.3);
+        }
+
+        .glass-button.secondary:hover {
+            background: rgba(124, 58, 237, 0.2);
+        }
+
+        .glass-footer {
+            text-align: center;
+            margin-top: auto;
+            padding: 24px;
+            color: #71717a;
+            font-size: 14px;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-12px);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .glass-card {
+                padding: 32px 24px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            .subtitle {
+                font-size: 16px;
+            }
+
+            .button-group {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .glass-button {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="glass-container">
+        <div class="glass-card">
+            <svg class="construction-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M11.42 2.83C11.71 2.54 12.19 2.54 12.47 2.83L21.17 11.53C21.46 11.81 21.46 12.29 21.17 12.58L12.47 21.28C12.19 21.57 11.71 21.57 11.42 21.28L2.72 12.58C2.43 12.29 2.43 11.81 2.72 11.53L11.42 2.83Z"
+                    stroke="#F4F4F4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M16 8L8 16" stroke="#F4F4F4" stroke-width="1.5" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                <path d="M8.40002 8L16.4 16" stroke="#F4F4F4" stroke-width="1.5" stroke-linecap="round"
+                    stroke-linejoin="round" />
+            </svg>
+
+            <h1>این بخش در حال توسعه است</h1>
+            <p class="subtitle">ما در حال ساخت تجربه‌ای فوق‌العاده برای شما هستیم</p>
+            <p class="description">این صفحه به زودی با امکانات جدید و طراحی زیبا در دسترس خواهد بود. لطفاً کمی بعد
+                دوباره سر بزنید!</p>
+
+            <div class="button-group">
+                <a href="/index.html" class="glass-button">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12.6667 8H3.33337" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                        <path d="M8 12.6667L3.33333 8.00004L8 3.33337" stroke="currentColor" stroke-width="1.5"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                    بازگشت به خانه
+                </a>
+
+                <a href="mailto:support@example.com" class="glass-button secondary">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M2.66663 4.00004L6.67063 6.95004C7.23063 7.37004 7.96063 7.37004 8.52063 6.95004L12.6666 4"
+                            stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        <path
+                            d="M13.3333 12C13.3333 12.7364 12.7364 13.3333 12 13.3333H4C3.26362 13.3333 2.66663 12.7364 2.66663 12V4C2.66663 3.26362 3.26362 2.66663 4 2.66663H12C12.7364 2.66663 13.3333 3.26362 13.3333 4V12Z"
+                            stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                    تماس با ما
+                </a>
+                <div class="glass-footer">
+                    <p>© 2025 تمام حقوق مادی و معنوی این وبسایت متعلق به خانه آژنگ است</p>
+                    <a href="https://shopdgdo.ir" target="_blank" style="text-decoration: none; color: #7c3aed;">تیم
+                        توسعه و ساخت وبسیات شاپ دیجی دو</a>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</body>
+
+</html>
