@@ -1,0 +1,339 @@
+        :root {
+            --primary: #ff6f00;
+            --primary-dark: #ff6f00;
+            --secondary: #017bd8;
+            --secondary-dark: #f39e00;
+            --darker: #ffffff;
+
+            --glass: rgb(0, 0, 0);
+            --glass-border: rgba(0, 0, 0, 0.1);
+            --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+
+            --transition: all 0.3s ease;
+            --radius: 30px;
+            --radius-sm: 8px;
+            --shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        @font-face {
+            font-family: 'Vazir';
+            src: url('/content/font/Vazir-Black.woff2');
+            font-display: swap;
+        }
+
+        * {
+            font-family: 'Vazir', sans-serif;
+            font-weight: 100;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-size: 1.6rem;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: #003468;
+            direction: rtl;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        .hero-shapes {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--primary), transparent);
+            opacity: 0.5;
+
+        }
+
+        .shape-1 {
+            width: 500px;
+            height: 500px;
+            top: -100px;
+            left: -100px;
+            animation: float 15s infinite ease-in-out;
+        }
+
+        .shape-2 {
+            width: 300px;
+            height: 300px;
+            bottom: 100px;
+            right: -50px;
+            animation: float 12s infinite ease-in-out;
+            animation-delay: 2s;
+        }
+
+        .shape-3 {
+            width: 200px;
+            height: 200px;
+            top: 50%;
+            right: -50px;
+            animation: float 10s infinite ease-in-out;
+            animation-delay: 4s;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-50px) rotate(10deg);
+            }
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .back-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: var(--radius);
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+            transition: var(--transition);
+            z-index: 100;
+            box-shadow: var(--shadow);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            direction: ltr;
+        }
+
+        .back-btn:hover {
+            box-shadow: var(--shadow-lg);
+        }
+
+        .about-page {
+            padding: 80px 0;
+        }
+
+        .hero-section {
+            text-align: center;
+            margin-bottom: 80px;
+            position: relative;
+            padding: 40px;
+            background: rgba(0, 0, 0, 0.507);
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(255, 255, 255, 0.445);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            color: rgb(255, 255, 255);
+            margin-bottom: 20px;
+            font-weight: 200;
+            letter-spacing: -1px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: var(--secondary-dark);
+            font-weight: 300;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .about-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 80px;
+        }
+
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+            padding: 40px;
+            background: rgba(0, 0, 0, 0.507);
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(255, 255, 255, 0.445);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+        }
+
+        .about-text h2 {
+            color: var(--secondary-dark);
+            margin-bottom: 25px;
+            font-size: 1.8rem;
+            position: relative;
+            padding-bottom: 15px;
+            font-weight: 700;
+
+        }
+
+        .about-text h2::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 3px;
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+            text-align: justify;
+            font-size: 1.1rem;
+            color: var(--darker);
+            font-weight: 300;
+            line-height: 2;
+        }
+
+        .domains-section {
+            margin-bottom: 80px;
+
+        }
+
+        .domains-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 60px;
+            position: relative;
+            font-weight: 800;
+            color: #f39e00;
+        }
+
+        .domains-title::after {
+            content: "";
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 2px;
+        }
+
+        .domains-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .domain-card {
+            overflow: hidden;
+            transition: var(--transition);
+            text-align: center;
+            padding: 40px 30px;
+            background: rgba(0, 0, 0, 0.507);
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(255, 255, 255, 0.445);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+        }
+
+        .domain-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .domain-icon {
+            font-size: 3.5rem;
+            margin-bottom: 25px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .domain-title {
+            font-size: 1.5rem;
+            color: rgb(255, 255, 255);
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .domain-desc {
+            color: var(--darker);
+            font-size: 1rem;
+            line-height: 1.8;
+            font-weight: 300;
+        }
+
+        .quote-section {
+            padding: 60px 40px;
+            margin-bottom: 60px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            background: rgba(0, 0, 0, 0.507);
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(255, 255, 255, 0.445);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+        }
+
+        .quote-section::before {
+            content: "";
+            position: absolute;
+            top: 20px;
+            right: 40px;
+            font-size: 10rem;
+            color: rgba(1, 123, 216, 0.05);
+            font-family: serif;
+            line-height: 1;
+            z-index: 0;
+        }
+
+        .quote-text {
+            font-size: 1.8rem;
+            font-weight: 500;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 1;
+            line-height: 1.6;
+            color: var(--secondary-dark);
+        }
+
+        .quote-author {
+            font-size: 1.2rem;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .quote-text {
+                font-size: 1.4rem;
+            }
+
+            .about-text {
+                padding: 30px;
+            }
+        }
