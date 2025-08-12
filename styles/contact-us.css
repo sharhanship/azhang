@@ -121,6 +121,15 @@
             align-items: center;
             gap: 8px;
             direction: ltr;
+            text-decoration: none;
+            outline: none;
+            scroll-behavior: smooth;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+            -moz-tap-highlight-color: transparent;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
         }
 
         .back-btn:hover {
@@ -141,6 +150,15 @@
             border: 2px solid rgba(255, 255, 255, 0.445);
             border-radius: var(--radius);
             box-shadow: var(--shadow);
+            text-decoration: none;
+            outline: none;
+            scroll-behavior: smooth;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+            -moz-tap-highlight-color: transparent;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
         }
 
         .hero-title {
@@ -184,6 +202,15 @@
             position: relative;
             padding-bottom: 15px;
             font-weight: 700;
+            text-decoration: none;
+            outline: none;
+            scroll-behavior: smooth;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+            -moz-tap-highlight-color: transparent;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
         }
 
         .contact-info h2::after {
@@ -222,6 +249,15 @@
             font-size: 1.4rem;
             margin-bottom: 5px;
             font-weight: 700;
+            text-decoration: none;
+            outline: none;
+            scroll-behavior: smooth;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+            -moz-tap-highlight-color: transparent;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
         }
 
         .info-content p {
@@ -240,6 +276,15 @@
             border: 2px solid rgba(255, 255, 255, 0.445);
             border-radius: var(--radius);
             box-shadow: var(--shadow);
+            text-decoration: none;
+            outline: none;
+            scroll-behavior: smooth;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+            -moz-tap-highlight-color: transparent;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
         }
 
         .contact-form h2 {
@@ -308,6 +353,15 @@
             cursor: pointer;
             transition: var(--transition);
             box-shadow: var(--shadow);
+            text-decoration: none;
+            outline: none;
+            scroll-behavior: smooth;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+            -moz-tap-highlight-color: transparent;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
         }
 
         .submit-btn:hover {
@@ -317,6 +371,15 @@
 
         .map-section {
             margin-bottom: 80px;
+            text-decoration: none;
+            outline: none;
+            scroll-behavior: smooth;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+            -moz-tap-highlight-color: transparent;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
         }
 
         .map-container {
@@ -365,5 +428,6 @@
             .contact-info,
             .contact-form {
                 padding: 30px;
+                font-size: medium;
             }
         }
