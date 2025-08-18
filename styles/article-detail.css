@@ -1,0 +1,131 @@
+/* استایل‌های صفحه جزئیات مقاله */
+.article-detail {
+  padding: 6rem 0;
+  background-color: var(--darker);
+}
+
+.article-header {
+  margin-bottom: 4rem;
+  text-align: center;
+  outline: none;
+  scroll-behavior: smooth;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  -moz-tap-highlight-color: transparent;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+.breadcrumb {
+  font-size: 1.4rem;
+  color: var(--gray);
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.breadcrumb a {
+  color: var(--gray);
+  transition: var(--transition);
+}
+
+.breadcrumb a:hover {
+  color: var(--primary);
+}
+
+.article-header h1 {
+  font-size: 3.5rem;
+  margin: 2rem 0;
+  line-height: 1.4;
+  color: rgb(226, 109, 0);
+}
+
+.article-content.glass-card {
+  padding: 0;
+  overflow: hidden;
+  margin-bottom: 4rem;
+}
+
+.article-image {
+  height: 400px;
+  overflow: hidden;
+  outline: none;
+  scroll-behavior: smooth;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  -moz-tap-highlight-color: transparent;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+.article-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.content {
+  padding: 4rem;
+}
+
+.content p {
+  font-size: 1.6rem;
+  line-height: 2;
+  margin-bottom: 2rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* استایل‌های ریسپانسیو */
+@media (max-width: 992px) {
+  .article-header h1 {
+    font-size: 3rem;
+  }
+
+  .article-image {
+    height: 350px;
+  }
+}
+
+@media (max-width: 768px) {
+  .article-header h1 {
+    font-size: 2.6rem;
+  }
+
+  .article-meta {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .article-image {
+    height: 300px;
+  }
+
+  .content {
+    padding: 3rem 2rem;
+  }
+
+  .article-footer {
+    flex-direction: column;
+    gap: 2rem;
+    align-items: flex-start;
+    padding: 2rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .article-header h1 {
+    font-size: 2.2rem;
+  }
+
+  .article-image {
+    height: 250px;
+  }
+
+  .content h2 {
+    font-size: 2rem;
+  }
+}
