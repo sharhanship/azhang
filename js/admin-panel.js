@@ -649,3 +649,339 @@ document.addEventListener('DOMContentLoaded', function() {
         return text.replace(/[&<>"']/g, function(m) { return map[m]; });
     }
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    // مدیریت فرم افزودن مقاله
+    const addArticleForm = document.getElementById('addArticleForm');
+    if (addArticleForm) {
+        addArticleForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData();
+            formData.append('title', document.getElementById('articleTitle').value);
+            formData.append('category_id', document.getElementById('articleCategory').value);
+            formData.append('content', document.getElementById('articleContent').value);
+            
+            const imageFile = document.getElementById('articleImage').files[0];
+            if (imageFile) {
+                formData.append('image', imageFile);
+            }
+            
+            addArticle(formData);
+        });
+    }
+    
+    // بارگذاری مقالات
+    loadArticles();
+    
+    // تابع افزودن مقاله
+    function addArticle(formData) {
+        showLoading();
+        
+        fetch('../apis/admin_articles.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === 'success') {
+                showMessage(data.message, 'success');
+                addArticleForm.reset();
+                // افزودن مقاله جدید به لیست
+                addArticleToList(data.article);
+            } else {
+                showMessage('خطا در ایجاد مقاله: ' + data.message, 'error');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            showMessage('خطا در ارتباط با سرور', 'error');
+        })
+        .finally(() => {
+            hideLoading();
+        });
+    }
+    
+    // تابع بارگذاری مقالات
+    function loadArticles() {
+        showLoading();
+        
+        fetch('../apis/admin_articles.php')
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    renderArticles(data.articles);
+                } else {
+                    showMessage('خطا در بارگذاری مقالات: ' + data.message, 'error');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                showMessage('خطا در ارتباط با سرور', 'error');
+            })
+            .finally(() => {
+                hideLoading();
+            });
+    }
+    
+    // تابع نمایش مقالات در لیست
+    function renderArticles(articles) {
+        const articlesList = document.querySelector('.articles-list');
+        if (!articlesList) return;
+        
+        articlesList.innerHTML = '';
+        
+        if (articles.length === 0) {
+            articlesList.innerHTML = `
+                <div class="no-articles">
+                    <p>هیچ مقاله‌ای وجود ندارد</p>
+                </div>
+            `;
+            return;
+        }
+        
+        articles.forEach(article => {
+            const articleItem = document.createElement('div');
+            articleItem.className = 'article-item';
+            articleItem.innerHTML = `
+                <div class="article-info">
+                    <h3>${escapeHtml(article.title)}</h3>
+                    <p>دسته‌بندی: ${escapeHtml(article.category_name)} | تاریخ انتشار: ${formatDate(article.created_at)}</p>
+                    ${article.views ? `<p>تعداد بازدید: ${article.views}</p>` : ''}
+                </div>
+                <div class="action-btns">
+                    <button class="btn btn-danger delete-article-btn" data-id="${article.id}">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M3 6H5H21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M8 6V4C8 3.46957 8.21071 2.96086 8.58579 2.58579C8.96086 2.21071 9.46957 2 10 2H14C14.5304 2 15.0391 2.21071 15.4142 2.58579C15.7893 2.96086 16 3.46957 16 4V6M19 6V20C19 20.5304 18.7893 21.0391 18.4142 21.4142C18.0391 21.7893 17.5304 22 17 22H7C6.46957 22 5.96086 21.7893 5.58579 21.4142C5.21071 21.0391 5 20.5304 5 20V6H19Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        حذف
+                    </button>
+                </div>
+            `;
+            
+            articlesList.appendChild(articleItem);
+        });
+        
+        // اضافه کردن event listener برای دکمه‌های حذف
+        document.querySelectorAll('.delete-article-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const articleId = e.target.closest('.delete-article-btn').getAttribute('data-id');
+                deleteArticle(articleId);
+            });
+        });
+    }
+    
+    // تابع افزودن مقاله جدید به لیست
+    function addArticleToList(article) {
+        const articlesList = document.querySelector('.articles-list');
+        if (!articlesList) return;
+        
+        // حذف پیام "هیچ مقاله‌ای وجود ندارد"
+        if (articlesList.querySelector('.no-articles')) {
+            articlesList.innerHTML = '';
+        }
+        
+        const articleItem = document.createElement('div');
+        articleItem.className = 'article-item';
+        articleItem.innerHTML = `
+            <div class="article-info">
+                <h3>${escapeHtml(article.title)}</h3>
+                <p>دسته‌بندی: ${escapeHtml(article.category_name)} | تاریخ انتشار: ${formatDate(article.created_at)}</p>
+                ${article.views ? `<p>تعداد بازدید: ${article.views}</p>` : ''}
+            </div>
+            <div class="action-btns">
+                <button class="btn btn-danger delete-article-btn" data-id="${article.id}">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M3 6H5H21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M8 6V4C8 3.46957 8.21071 2.96086 8.58579 2.58579C8.96086 2.21071 9.46957 2 10 2H14C14.5304 2 15.0391 2.21071 15.4142 2.58579C15.7893 2.96086 16 3.46957 16 4V6M19 6V20C19 20.5304 18.7893 21.0391 18.4142 21.4142C18.0391 21.7893 17.5304 22 17 22H7C6.46957 22 5.96086 21.7893 5.58579 21.4142C5.21071 21.0391 5 20.5304 5 20V6H19Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    حذف
+                </button>
+            </div>
+        `;
+        
+        articlesList.insertBefore(articleItem, articlesList.firstChild);
+        
+        // اضافه کردن event listener برای دکمه حذف
+        const deleteBtn = articleItem.querySelector('.delete-article-btn');
+        deleteBtn.addEventListener('click', (e) => {
+            const articleId = e.target.closest('.delete-article-btn').getAttribute('data-id');
+            deleteArticle(articleId);
+        });
+    }
+    
+    // تابع حذف مقاله
+    function deleteArticle(articleId) {
+        if (!confirm('آیا از حذف این مقاله اطمینان دارید؟ این عمل غیرقابل بازگشت است.')) {
+            return;
+        }
+        
+        showLoading();
+        
+        fetch('../apis/admin_articles.php', {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ id: articleId })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === 'success') {
+                showMessage(data.message, 'success');
+                // حذف مقاله از نمایش
+                const articleElement = document.querySelector(`.delete-article-btn[data-id="${articleId}"]`);
+                if (articleElement) {
+                    articleElement.closest('.article-item').remove();
+                }
+                
+                // اگر هیچ مقاله‌ای نمانده، پیام نمایش داده شود
+                const articlesList = document.querySelector('.articles-list');
+                if (articlesList && articlesList.children.length === 0) {
+                    articlesList.innerHTML = `
+                        <div class="no-articles">
+                            <p>هیچ مقاله‌ای وجود ندارد</p>
+                        </div>
+                    `;
+                }
+            } else {
+                showMessage('خطا در حذف مقاله: ' + data.message, 'error');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            showMessage('خطا در ارتباط با سرور', 'error');
+        })
+        .finally(() => {
+            hideLoading();
+        });
+    }
+    
+    // تابع فرمت تاریخ
+    function formatDate(dateString) {
+        const date = new Date(dateString);
+        return date.toLocaleDateString('fa-IR');
+    }
+    
+    // تابع نمایش پیام
+    function showMessage(message, type) {
+        // حذف پیام‌های قبلی
+        const existingMessages = document.querySelectorAll('.custom-message');
+        existingMessages.forEach(msg => msg.remove());
+        
+        // ایجاد پیام جدید
+        const messageDiv = document.createElement('div');
+        messageDiv.className = `custom-message ${type}`;
+        messageDiv.textContent = message;
+        
+        // استایل‌دهی به پیام
+        messageDiv.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 50%;
+            transform: translateX(50%);
+            padding: 15px 25px;
+            border-radius: 10px;
+            color: white;
+            font-weight: bold;
+            z-index: 10000;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            animation: slideIn 0.5s ease, fadeOut 0.5s ease 4.5s forwards;
+        `;
+        
+        if (type === 'success') {
+            messageDiv.style.background = 'rgba(76, 175, 80, 0.8)';
+            messageDiv.style.border = '1px solid rgba(76, 175, 80, 0.3)';
+        } else {
+            messageDiv.style.background = 'rgba(244, 67, 54, 0.8)';
+            messageDiv.style.border = '1px solid rgba(244, 67, 54, 0.3)';
+        }
+        
+        document.body.appendChild(messageDiv);
+        
+        // حذف خودکار پس از 5 ثانیه
+        setTimeout(() => {
+            if (messageDiv.parentNode) {
+                messageDiv.parentNode.removeChild(messageDiv);
+            }
+        }, 5000);
+    }
+    
+    // تابع نمایش لودینگ
+    function showLoading() {
+        let spinner = document.getElementById('formSpinner');
+        if (!spinner) {
+            spinner = document.createElement('div');
+            spinner.id = 'formSpinner';
+            spinner.innerHTML = `
+                <div style="
+                    border: 3px solid #f3f3f3;
+                    border-top: 3px solid #FF6B35;
+                    border-radius: 50%;
+                    width: 30px;
+                    height: 30px;
+                    animation: spin 1s linear infinite;
+                    margin: 0 auto;
+                "></div>
+            `;
+            spinner.style.cssText = `
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                z-index: 9999;
+                padding: 20px;
+                background: rgba(255, 255, 255, 0.9);
+                border-radius: 15px;
+                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+                backdrop-filter: blur(10px);
+                -webkit-backdrop-filter: blur(10px);
+            `;
+            document.body.appendChild(spinner);
+        }
+        spinner.style.display = 'block';
+    }
+    
+    // تابع پنهان کردن لودینگ
+    function hideLoading() {
+        const spinner = document.getElementById('formSpinner');
+        if (spinner) {
+            spinner.style.display = 'none';
+        }
+    }
+    
+    // تابع escape HTML برای جلوگیری از XSS
+    function escapeHtml(text) {
+        const map = {
+            '&': '&amp;',
+            '<': '&lt;',
+            '>': '&gt;',
+            '"': '&quot;',
+            "'": '&#039;'
+        };
+        return text.replace(/[&<>"']/g, function(m) { return map[m]; });
+    }
+});
