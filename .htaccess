@@ -1,0 +1,15 @@
+<IfModule php_module>
+    php_value upload_max_filesize 1024M
+    php_value post_max_size 1050M
+    php_value max_execution_time 1800
+    php_value max_input_time 1800
+</IfModule>
+
+Options -Indexes
+
+ErrorDocument 403 /error-403.html
+
+# مسدود کردن فایل‌های حساس
+<FilesMatch "\.(env|htaccess|sql|log|ini)$">
+    Require all denied
+</FilesMatch>
