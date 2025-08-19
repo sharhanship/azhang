@@ -13,3 +13,4 @@ ErrorDocument 403 /error-403.html
 <FilesMatch "\.(env|htaccess|sql|log|ini)$">
     Require all denied
 </FilesMatch>
+
