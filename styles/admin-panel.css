@@ -1,6 +1,6 @@
 @font-face {
   font-family: "Vazir";
-  src: url("/content/font/Vazir-Black.woff2");
+  src: url("../content/font/Vazir-Black.woff2");
   font-display: swap;
 }
 
@@ -27,7 +27,7 @@
 
 body {
     background: linear-gradient(rgba(0, 0, 0, 0.719), rgba(0, 0, 0, 0.76)),
-      url('/content/image/backgforadminpanel/cybercity8.gif') no-repeat center center/cover;
+      url('../content/image/backgforadminpanel/cybercity8.gif') no-repeat center center/cover;
   color: var(--light-color);
   min-height: 100vh;
   padding: 20px;

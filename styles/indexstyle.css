@@ -22,7 +22,7 @@
 
 @font-face {
     font-family: 'Vazir';
-    src: url('/content/font/Vazir-Black.woff2');
+    src: url('../content/font/Vazir-Black.woff2');
     font-display: swap;
 }
 
