@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>پنل مدیریت</title>
+    <link rel="stylesheet" href="/styles/admin-panel.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <div class="logo">پنل مدیریت خانه آژنگ</div>
+        <button class="btn btn-primary" id="homeBtn">
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M3 9L12 2L21 9V20C21 20.5304 20.7893 21.0391 20.4142 21.4142C20.0391 21.7893 19.5304 22 19 22H5C4.46957 22 3.96086 21.7893 3.58579 21.4142C3.21071 21.0391 3 20.5304 3 20V9Z"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M9 22V12H15V22"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          بازگشت به صفحه اصلی
+        </button>
+      </header>
+
+      <div class="tabs">
+        <div class="tab active" data-tab="messages">مدیریت پیام‌ها</div>
+        <div class="tab" data-tab="gallery">مدیریت گالری</div>
+        <div class="tab" data-tab="add-article">افزودن مقاله</div>
+        <div class="tab" data-tab="manage-articles">مدیریت مقالات</div>
+      </div>
+
+      <!-- Messages Tab -->
+      <div class="tab-content active" id="messages">
+        <h2>مدیریت پیام‌های دریافتی</h2>
+        <table class="messages-table">
+          <thead>
+            <tr>
+              <th>ردیف</th>
+              <th>نام و نام خانوادگی</th>
+              <th>شماره تلفن</th>
+              <th>متن پیام</th>
+              <th>عملیات</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>علی محمدی</td>
+              <td>09123456789</td>
+              <td>سلام، من در مورد خدمات شما سوالی داشتم...</td>
+              <td class="action-btns">
+                <button
+                  class="btn btn-primary view-message-btn"
+                  data-message="سلام، من در مورد خدمات شما سوالی داشتم. می‌خواستم بپرسم آیا امکان مشاوره رایگان وجود دارد یا خیر؟ با تشکر"
+                >
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M1 12C1 12 5 4 12 4C19 4 23 12 23 12C23 12 19 20 12 20C5 20 1 12 1 12Z"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      d="M12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15Z"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                  مشاهده
+                </button>
+                <button class="btn btn-danger">
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M3 6H5H21"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      d="M8 6V4C8 3.46957 8.21071 2.96086 8.58579 2.58579C8.96086 2.21071 9.46957 2 10 2H14C14.5304 2 15.0391 2.21071 15.4142 2.58579C15.7893 2.96086 16 3.46957 16 4V6M19 6V20C19 20.5304 18.7893 21.0391 18.4142 21.4142C18.0391 21.7893 17.5304 22 17 22H7C6.46957 22 5.96086 21.7893 5.58579 21.4142C5.21071 21.0391 5 20.5304 5 20V6H19Z"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                  حذف
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>فاطمه زهرا احمدی</td>
+              <td>09351234567</td>
+              <td>با سلام، مقاله شما در مورد داستان‌نویسی بسیار عالی بود...</td>
+              <td class="action-btns">
+                <button
+                  class="btn btn-primary view-message-btn"
+                  data-message="با سلام، مقاله شما در مورد داستان‌نویسی بسیار عالی بود. آیا امکان دارد منابع بیشتری در این زمینه معرفی کنید؟ من بسیار علاقه‌مند هستم که بیشتر یاد بگیرم. با تشکر از شما"
+                >
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M1 12C1 12 5 4 12 4C19 4 23 12 23 12C23 12 19 20 12 20C5 20 1 12 1 12Z"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      d="M12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15Z"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                  مشاهده
+                </button>
+                <button class="btn btn-danger">
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M3 6H5H21"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      d="M8 6V4C8 3.46957 8.21071 2.96086 8.58579 2.58579C8.96086 2.21071 9.46957 2 10 2H14C14.5304 2 15.0391 2.21071 15.4142 2.58579C15.7893 2.96086 16 3.46957 16 4V6M19 6V20C19 20.5304 18.7893 21.0391 18.4142 21.4142C18.0391 21.7893 17.5304 22 17 22H7C6.46957 22 5.96086 21.7893 5.58579 21.4142C5.21071 21.0391 5 20.5304 5 20V6H19Z"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                  حذف
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>محسن رضایی</td>
+              <td>09187654321</td>
+              <td>سلام وقت بخیر، من مشکل فنی در سایت داشتم...</td>
+              <td class="action-btns">
+                <button
+                  class="btn btn-primary view-message-btn"
+                  data-message="سلام وقت بخیر، من مشکل فنی در سایت داشتم. وقتی می‌خواهم مقاله‌ها را مشاهده کنم، گاهی اوقات صفحه به درستی بارگذاری نمی‌شود. لطفاً این مشکل را بررسی کنید. با تشکر"
+                >
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M1 12C1 12 5 4 12 4C19 4 23 12 23 12C23 12 19 20 12 20C5 20 1 12 1 12Z"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      d="M12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15Z"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                  مشاهده
+                </button>
+                <button class="btn btn-danger">
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M3 6H5H21"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      d="M8 6V4C8 3.46957 8.21071 2.96086 8.58579 2.58579C8.96086 2.21071 9.46957 2 10 2H14C14.5304 2 15.0391 2.21071 15.4142 2.58579C15.7893 2.96086 16 3.46957 16 4V6M19 6V20C19 20.5304 18.7893 21.0391 18.4142 21.4142C18.0391 21.7893 17.5304 22 17 22H7C6.46957 22 5.96086 21.7893 5.58579 21.4142C5.21071 21.0391 5 20.5304 5 20V6H19Z"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                  حذف
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Gallery Tab -->
+      <div class="tab-content" id="gallery">
+        <h2>مدیریت گالری تصاویر</h2>
+
+        <div class="form-group">
+          <h3>افزودن تصویر جدید</h3>
+          <form id="addImageForm">
+            <div class="form-group">
+              <label class="form-label" for="imageTitle">عنوان تصویر</label>
+              <input
+                type="text"
+                class="form-control"
+                id="imageTitle"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="imageDescription">توضیحات</label>
+              <textarea
+                class="form-control"
+                id="imageDescription"
+                rows="3"
+              ></textarea>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="imageFile"
+                >انتخاب فایل تصویر</label
+              >
+              <input
+                type="file"
+                class="form-control"
+                id="imageFile"
+                accept="image/*"
+                required
+              />
+            </div>
+            <button type="submit" class="btn btn-success">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M12 5V19"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M5 12H19"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+              افزودن تصویر
+            </button>
+          </form>
+        </div>
+
+        <div class="form-group">
+          <h3>تصاویر موجود</h3>
+          <div class="gallery-grid">
+            <div class="gallery-item">
+              <img
+                src="#"
+                alt="تصویر 1"
+              />
+              <div class="gallery-item-overlay">
+                <button class="btn btn-danger btn-sm">
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M3 6H5H21"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      d="M8 6V4C8 3.46957 8.21071 2.96086 8.58579 2.58579C8.96086 2.21071 9.46957 2 10 2H14C14.5304 2 15.0391 2.21071 15.4142 2.58579C15.7893 2.96086 16 3.46957 16 4V6M19 6V20C19 20.5304 18.7893 21.0391 18.4142 21.4142C18.0391 21.7893 17.5304 22 17 22H7C6.46957 22 5.96086 21.7893 5.58579 21.4142C5.21071 21.0391 5 20.5304 5 20V6H19Z"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </button>
+              </div>
+            </div>
+            <div class="gallery-item">
+              <img
+                src="#"
+                alt="تصویر 2"
+              />
+              <div class="gallery-item-overlay">
+                <button class="btn btn-danger btn-sm">
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M3 6H5H21"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      d="M8 6V4C8 3.46957 8.21071 2.96086 8.58579 2.58579C8.96086 2.21071 9.46957 2 10 2H14C14.5304 2 15.0391 2.21071 15.4142 2.58579C15.7893 2.96086 16 3.46957 16 4V6M19 6V20C19 20.5304 18.7893 21.0391 18.4142 21.4142C18.0391 21.7893 17.5304 22 17 22H7C6.46957 22 5.96086 21.7893 5.58579 21.4142C5.21071 21.0391 5 20.5304 5 20V6H19Z"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </button>
+              </div>
+            </div>
+            <div class="gallery-item">
+              <img
+                src="#"
+                alt="تصویر 3"
+              />
+              <div class="gallery-item-overlay">
+                <button class="btn btn-danger btn-sm">
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M3 6H5H21"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      d="M8 6V4C8 3.46957 8.21071 2.96086 8.58579 2.58579C8.96086 2.21071 9.46957 2 10 2H14C14.5304 2 15.0391 2.21071 15.4142 2.58579C15.7893 2.96086 16 3.46957 16 4V6M19 6V20C19 20.5304 18.7893 21.0391 18.4142 21.4142C18.0391 21.7893 17.5304 22 17 22H7C6.46957 22 5.96086 21.7893 5.58579 21.4142C5.21071 21.0391 5 20.5304 5 20V6H19Z"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </button>
+              </div>
+            </div>
+            <div class="gallery-item">
+              <img
+                src="#"
+                alt="تصویر 4"
+              />
+              <div class="gallery-item-overlay">
+                <button class="btn btn-danger btn-sm">
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M3 6H5H21"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      d="M8 6V4C8 3.46957 8.21071 2.96086 8.58579 2.58579C8.96086 2.21071 9.46957 2 10 2H14C14.5304 2 15.0391 2.21071 15.4142 2.58579C15.7893 2.96086 16 3.46957 16 4V6M19 6V20C19 20.5304 18.7893 21.0391 18.4142 21.4142C18.0391 21.7893 17.5304 22 17 22H7C6.46957 22 5.96086 21.7893 5.58579 21.4142C5.21071 21.0391 5 20.5304 5 20V6H19Z"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Add Article Tab -->
+      <div class="tab-content" id="add-article">
+        <h2>افزودن مقاله جدید</h2>
+        <form id="addArticleForm">
+          <div class="form-group">
+            <label class="form-label" for="articleTitle">عنوان مقاله</label>
+            <input
+              type="text"
+              class="form-control"
+              id="articleTitle"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="articleCategory">دسته‌بندی</label>
+            <select class="form-control" id="articleCategory" required>
+              <option value="">-- انتخاب دسته‌بندی --</option>
+              <option value="all">همه مقالات</option>
+              <option value="story">داستان‌نویسی</option>
+              <option value="poem">شعر</option>
+              <option value="psychology">روانشناسی ادبی</option>
+              <option value="criticism">نقد ادبی</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="articleImage">تصویر مقاله</label>
+            <input
+              type="file"
+              class="form-control"
+              id="articleImage"
+              accept="image/*"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="articleContent">محتوا</label>
+            <textarea
+              class="form-control"
+              id="articleContent"
+              rows="10"
+              required
+            ></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-success">
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M12 5V19"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M5 12H19"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+            انتشار مقاله
+          </button>
+        </form>
+      </div>
+
+      <!-- Manage Articles Tab -->
+      <div class="tab-content" id="manage-articles">
+        <h2>مدیریت مقالات</h2>
+
+        <div class="articles-list">
+          <div class="article-item">
+            <div class="article-info">
+              <h3>راهنمای جامع داستان‌نویسی</h3>
+              <p>دسته‌بندی: داستان‌نویسی | تاریخ انتشار: 1402/05/15</p>
+            </div>
+            <div class="action-btns">
+              <button class="btn btn-danger">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M3 6H5H21"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M8 6V4C8 3.46957 8.21071 2.96086 8.58579 2.58579C8.96086 2.21071 9.46957 2 10 2H14C14.5304 2 15.0391 2.21071 15.4142 2.58579C15.7893 2.96086 16 3.46957 16 4V6M19 6V20C19 20.5304 18.7893 21.0391 18.4142 21.4142C18.0391 21.7893 17.5304 22 17 22H7C6.46957 22 5.96086 21.7893 5.58579 21.4142C5.21071 21.0391 5 20.5304 5 20V6H19Z"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+                حذف
+              </button>
+            </div>
+          </div>
+
+          <div class="article-item">
+            <div class="article-info">
+              <h3>تحلیل روانشناختی شخصیت‌های شاهنامه</h3>
+              <p>دسته‌بندی: روانشناسی ادبی | تاریخ انتشار: 1402/04/22</p>
+            </div>
+            <div class="action-btns">
+              <button class="btn btn-danger">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M3 6H5H21"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M8 6V4C8 3.46957 8.21071 2.96086 8.58579 2.58579C8.96086 2.21071 9.46957 2 10 2H14C14.5304 2 15.0391 2.21071 15.4142 2.58579C15.7893 2.96086 16 3.46957 16 4V6M19 6V20C19 20.5304 18.7893 21.0391 18.4142 21.4142C18.0391 21.7893 17.5304 22 17 22H7C6.46957 22 5.96086 21.7893 5.58579 21.4142C5.21071 21.0391 5 20.5304 5 20V6H19Z"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+                حذف
+              </button>
+            </div>
+          </div>
+
+          <div class="article-item">
+            <div class="article-info">
+              <h3>نقدی بر سبک شعر نو</h3>
+              <p>دسته‌بندی: نقد ادبی | تاریخ انتشار: 1402/03/10</p>
+            </div>
+            <div class="action-btns">
+              <button class="btn btn-danger">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M3 6H5H21"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M8 6V4C8 3.46957 8.21071 2.96086 8.58579 2.58579C8.96086 2.21071 9.46957 2 10 2H14C14.5304 2 15.0391 2.21071 15.4142 2.58579C15.7893 2.96086 16 3.46957 16 4V6M19 6V20C19 20.5304 18.7893 21.0391 18.4142 21.4142C18.0391 21.7893 17.5304 22 17 22H7C6.46957 22 5.96086 21.7893 5.58579 21.4142C5.21071 21.0391 5 20.5304 5 20V6H19Z"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+                حذف
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Message Modal -->
+    <div class="modal" id="messageModal">
+      <div class="modal-content">
+        <button class="modal-close" id="closeModal">
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M18 6L6 18"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M6 6L18 18"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </button>
+        <h2 class="modal-title">متن کامل پیام</h2>
+        <p id="fullMessageText"></p>
+      </div>
+    </div>
+    <script src="/js/admin-panel.js"></script>
+  </body>
+</html>
