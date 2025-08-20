@@ -1847,32 +1847,209 @@ nav {
   }
 }
 
-
 .empty-gallery-message {
-    grid-column: 1 / -1;
-    text-align: center;
-    padding: 60px 20px;
-    color: #888;
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 60px 20px;
+  color: #888;
 }
 
 .empty-gallery-message svg {
-    margin-bottom: 20px;
-    opacity: 0.5;
+  margin-bottom: 20px;
+  opacity: 0.5;
 }
 
 .empty-gallery-message h3 {
-    margin: 0 0 10px 0;
-    font-size: 20px;
-    font-weight: 500;
+  margin: 0 0 10px 0;
+  font-size: 20px;
+  font-weight: 500;
 }
 
 .empty-gallery-message p {
-    margin: 0;
-    font-size: 16px;
+  margin: 0;
+  font-size: 16px;
 }
 
 .image-card .image-wrapper img[src*="data:image/svg+xml"] {
-    background-color: #f9f9f9;
-    border: 2px dashed #ddd;
-    border-radius: 8px;
+  background-color: #f9f9f9;
+  border: 2px dashed #ddd;
+  border-radius: 8px;
+}
+
+/* استایل دکمه‌ها */
+.btn {
+  display: inline-block;
+  padding: 12px 24px;
+  margin: 10px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background-color: #ff6600;
+  color: white;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: #ffa600;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-outline:hover {
+  background-color: #ffa600;
+  color: rgb(0, 0, 0);
+}
+
+.btn-outline svg {
+  margin-left: 8px;
+}
+
+/* استایل مودال */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-container {
+  background-color: #000000;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 800px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  transform: scale(0.9);
+  transition: transform 0.3s ease;
+  outline: none;
+  scroll-behavior: smooth;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  -moz-tap-highlight-color: transparent;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+.modal-overlay.active .modal-container {
+  transform: scale(1);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  background-color: #000000;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.modal-title {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.close-button {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #ff0000;
+  transition: color 0.3s ease;
+}
+
+.close-button:hover {
+  color: #ff7300;
+}
+
+.modal-body {
+  padding: 0;
+  position: relative;
+}
+
+.video-container {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%; /* نسبت 16:9 */
+  background-color: #000;
+}
+
+.modal-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.video-controls {
+  display: flex;
+  padding: 12px 20px;
+  background-color: #000000;
+  border-top: 1px solid #ff0000;
+}
+
+.control-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin: 0 10px;
+  font-size: 18px;
+  color: #ffffff;
+  transition: color 0.3s ease;
+}
+
+.control-btn:hover {
+  color: #007bff;
+}
+
+
+.time {
+  font-size: 14px;
+  color: #6c757d;
+  margin: 0 10px;
+  white-space: nowrap;
+}
+
+/* ریسپانسیو برای موبایل */
+@media (max-width: 768px) {
+  .modal-container {
+    width: 95%;
+  }
+
+  .video-controls {
+    flex-wrap: wrap;
+  }
+
+  .progress-container {
+    order: -1;
+    width: 100%;
+    margin-bottom: 10px;
+  }
 }

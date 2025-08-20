@@ -42,7 +42,9 @@
           <div class="nav-links">
             <a href="./index.html" class="nav-link active">خانه</a>
             <a href="./pages/errordevpage.html" class="nav-link">دوره‌ها</a>
-            <a href="./pages/explore-articles.html" class="nav-link">مقاله ها</a>
+            <a href="./pages/explore-articles.html" class="nav-link"
+              >مقاله ها</a
+            >
             <a href="#podcast" class="nav-link">پادکست</a>
             <a href="./pages/about-us.html" class="nav-link">درباره ما</a>
             <a href="./pages/contact-us.html" class="nav-link">تماس با ما</a>
@@ -134,7 +136,7 @@
                 href="https://www.instagram.com/khaneazhang?igsh=dmkwZWNob3BuenQ5"
                 >پیج اینستاگرام</a
               >
-              <button class="btn btn-outline btn-lg">
+              <a href="#" class="btn btn-outline" id="videoLink">
                 <svg
                   width="20"
                   height="20"
@@ -172,11 +174,149 @@
                   />
                 </svg>
                 ویدیوی معرفی
-              </button>
+              </a>
             </div>
           </div>
         </div>
       </div>
+
+      <div class="modal-overlay" id="videoModal">
+        <div class="modal-container">
+          <div class="modal-header">
+            <div class="modal-title">ویدیوی معرفی</div>
+            <button class="close-button">&times;</button>
+          </div>
+          <div class="modal-body">
+            <div class="video-container">
+              <video class="modal-video" id="modalVideo">
+                <source
+                  src="./content/video/video_2025-08-20_20-44-28.mp4"
+                  type="video/mp4"
+                />
+                مرورگر شما از پخش ویدیو پشتیبانی نمی‌کند.
+              </video>
+            </div>
+          </div>
+          <div class="video-controls">
+            <button class="control-btn" id="playPause">▶</button>
+            <button class="control-btn" id="mute">🔊</button>
+            <div class="progress-container">
+              <div class="progress-bar" id="progressBar">
+                <div class="progress" id="progress"></div>
+              </div>
+              <div class="time" id="timeDisplay">0:00 / 0:00</div>
+            </div>
+            <button class="control-btn" id="fullscreen">⛶</button>
+          </div>
+        </div>
+      </div>
+
+      <script>
+        document.addEventListener("DOMContentLoaded", function () {
+          // عناصر DOM
+          const videoLink = document.getElementById("videoLink");
+          const videoModal = document.getElementById("videoModal");
+          const modalVideo = document.getElementById("modalVideo");
+          const closeButton = document.querySelector(".close-button");
+          const playPauseBtn = document.getElementById("playPause");
+          const muteBtn = document.getElementById("mute");
+          const progressBar = document.getElementById("progressBar");
+          const progress = document.getElementById("progress");
+          const timeDisplay = document.getElementById("timeDisplay");
+          const fullscreenBtn = document.getElementById("fullscreen");
+
+          // باز کردن مودال با کلیک روی لینک
+          videoLink.addEventListener("click", function (e) {
+            e.preventDefault();
+            videoModal.classList.add("active");
+            modalVideo.play();
+            updatePlayPauseIcon();
+          });
+
+          // بستن مودال
+          closeButton.addEventListener("click", function () {
+            videoModal.classList.remove("active");
+            modalVideo.pause();
+          });
+
+          // بستن مودال با کلیک خارج از آن
+          videoModal.addEventListener("click", function (e) {
+            if (e.target === videoModal) {
+              videoModal.classList.remove("active");
+              modalVideo.pause();
+            }
+          });
+
+          // کنترل پخش/توقف ویدیو
+          playPauseBtn.addEventListener("click", function () {
+            if (modalVideo.paused) {
+              modalVideo.play();
+            } else {
+              modalVideo.pause();
+            }
+            updatePlayPauseIcon();
+          });
+
+          // کنترل صدا
+          muteBtn.addEventListener("click", function () {
+            modalVideo.muted = !modalVideo.muted;
+            updateMuteIcon();
+          });
+
+          // به روزرسانی نوار پیشرفت
+          modalVideo.addEventListener("timeupdate", function () {
+            const value = (modalVideo.currentTime / modalVideo.duration) * 100;
+            progress.style.width = value + "%";
+
+            // به روزرسانی زمان
+            const currentTime = formatTime(modalVideo.currentTime);
+            const duration = formatTime(modalVideo.duration);
+            timeDisplay.textContent = `${currentTime} / ${duration}`;
+          });
+
+          // کلیک روی نوار پیشرفت برای جهش به قسمت دیگری از ویدیو
+          progressBar.addEventListener("click", function (e) {
+            const progressWidth = this.clientWidth;
+            const clickX = e.offsetX;
+            const duration = modalVideo.duration;
+            modalVideo.currentTime = (clickX / progressWidth) * duration;
+          });
+
+          // کنترل تمام‌صفحه
+          fullscreenBtn.addEventListener("click", function () {
+            if (modalVideo.requestFullscreen) {
+              modalVideo.requestFullscreen();
+            } else if (modalVideo.webkitRequestFullscreen) {
+              modalVideo.webkitRequestFullscreen();
+            } else if (modalVideo.msRequestFullscreen) {
+              modalVideo.msRequestFullscreen();
+            }
+          });
+
+          // به روزرسانی آیکون پخش/توقف
+          function updatePlayPauseIcon() {
+            playPauseBtn.textContent = modalVideo.paused ? "▶" : "⏸";
+          }
+
+          // به روزرسانی آیکون صدا
+          function updateMuteIcon() {
+            muteBtn.textContent = modalVideo.muted ? "🔇" : "🔊";
+          }
+
+          // فرمت زمان به دقیقه:ثانیه
+          function formatTime(seconds) {
+            const min = Math.floor(seconds / 60);
+            const sec = Math.floor(seconds % 60);
+            return `${min}:${sec < 10 ? "0" : ""}${sec}`;
+          }
+
+          // وقتی ویدیو پایان یابد
+          modalVideo.addEventListener("ended", function () {
+            playPauseBtn.textContent = "▶";
+            modalVideo.currentTime = 0;
+          });
+        });
+      </script>
 
       <!-- بقیه عناصر هیرو بدون تغییر -->
       <div class="hero-scroll">
@@ -781,19 +921,19 @@
       </div>
     </section> -->
 
-<!-- بخش تصاویر منتخب هفته -->
-<section class="featured-images" id="featured-images">
-    <div class="container">
+    <!-- بخش تصاویر منتخب هفته -->
+    <section class="featured-images" id="featured-images">
+      <div class="container">
         <div class="section-header">
-            <h2 class="section-title">تصاویر منتخب این هفته</h2>
-            <p class="section-subtitle">گلچینی از بهترین لحظات خانه آژنگ</p>
+          <h2 class="section-title">تصاویر منتخب این هفته</h2>
+          <p class="section-subtitle">گلچینی از بهترین لحظات خانه آژنگ</p>
         </div>
 
         <div class="images-grid">
-            <!-- تصاویر به صورت داینامیک توسط JavaScript اضافه خواهند شد -->
+          <!-- تصاویر به صورت داینامیک توسط JavaScript اضافه خواهند شد -->
         </div>
-    </div>
-</section>
+      </div>
+    </section>
 
     <!-- Footer -->
     <footer class="footer">
