@@ -237,7 +237,7 @@ document.addEventListener("DOMContentLoaded", function () {
             color: white;
             font-weight: bold;
             z-index: 10000;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 1);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             animation: slideIn 0.5s ease, fadeOut 0.5s ease 4.5s forwards;
@@ -984,4 +984,27 @@ document.addEventListener('DOMContentLoaded', function() {
         };
         return text.replace(/[&<>"']/g, function(m) { return map[m]; });
     }
+});
+
+
+
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    // بررسی توکن
+    const urlParams = new URLSearchParams(window.location.search);
+    const token = urlParams.get('token');
+    const savedToken = localStorage.getItem('admin_token');
+    
+    if (!token || token !== savedToken) {
+        alert('دسترسی غیرمجاز! لطفاً از طریق صفحه لاگین وارد شوید.');
+        window.location.href = '../';
+        return;
+    }
+    
+    // مدیریت دکمه خروج
+    document.getElementById('logout-btn')?.addEventListener('click', function() {
+        localStorage.removeItem('admin_token');
+        window.location.href = '../';
+    });
 });

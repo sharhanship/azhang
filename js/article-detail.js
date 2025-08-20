@@ -91,7 +91,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     </svg>
                     <h3>خطا در بارگذاری مقاله</h3>
                     <p>${message}</p>
-                    <a href="../pages/explore-articles.htm" class="btn btn-primary">بازگشت به مقالات</a>
+                    <a href="../pages/explore-articles.html" class="btn btn-primary">بازگشت به مقالات</a>
                 </div>
             `;
         }

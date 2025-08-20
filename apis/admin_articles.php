@@ -1,20 +1,12 @@
 <?php
 header('Content-Type: application/json; charset=utf-8');
 
-// غیرفعال کردن احراز هویت موقت
-// session_start();
-// if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== true) {
-//     http_response_code(401);
-//     echo json_encode(['status' => 'error', 'message' => 'دسترسی غیرمجاز']);
-//     exit;
-// }
-
 // اتصال به دیتابیس
 function getDBConnection() {
     $host = 'localhost';
     $dbname = 'khaneazhang-db';
-    $username = 'root'; // جایگزین کنید
-    $password = ''; // جایگزین کنید
+    $username = 'root';
+    $password = '';
     
     try {
         $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8mb4", $username, $password, [
@@ -50,6 +42,13 @@ if ($method === 'GET') {
         ");
         $articles = $stmt->fetchAll();
         
+        // اصلاح مسیر تصاویر برای نمایش صحیح
+        foreach ($articles as &$article) {
+            if (!empty($article['image_path'])) {
+                $article['image_url'] = str_replace('../', '', $article['image_path']);
+            }
+        }
+        
         echo json_encode(['status' => 'success', 'articles' => $articles]);
         
     } catch (PDOException $e) {
@@ -76,11 +75,13 @@ if ($method === 'GET') {
         exit;
     }
     
-    // تولید slug از عنوان
-    $slug = generateSlug($title);
+    // تولید slug از عنوان و بررسی تکراری نبودن - همیشه از تابع یکتا استفاده می‌کنیم
+    $slug = generateUniqueSlug($pdo, $title);
     
     // بررسی فایل آپلود شده
     $image_path = null;
+    $image_url = null;
+    
     if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
         $allowed_types = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
         $file_type = $_FILES['image']['type'];
@@ -93,13 +94,23 @@ if ($method === 'GET') {
         // ایجاد پوشه uploads اگر وجود ندارد
         $upload_dir = '../uploads/articles/';
         if (!file_exists($upload_dir)) {
-            mkdir($upload_dir, 0777, true);
+            if (!mkdir($upload_dir, 0755, true)) {
+                echo json_encode(['status' => 'error', 'message' => 'خطا در ایجاد پوشه آپلود']);
+                exit;
+            }
+        }
+        
+        // بررسی قابل نوشتن بودن پوشه
+        if (!is_writable($upload_dir)) {
+            echo json_encode(['status' => 'error', 'message' => 'پوشه آپلود قابل نوشتن نیست']);
+            exit;
         }
         
         // تولید نام فایل منحصر به فرد
         $file_extension = pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
         $file_name = uniqid() . '_' . time() . '.' . $file_extension;
         $image_path = $upload_dir . $file_name;
+        $image_url = 'uploads/articles/' . $file_name; // مسیر نسبی برای دسترسی وب
         
         // ذخیره فایل
         if (!move_uploaded_file($_FILES['image']['tmp_name'], $image_path)) {
@@ -114,7 +125,7 @@ if ($method === 'GET') {
             INSERT INTO articles (title, slug, category_id, image_path, content, published_at) 
             VALUES (?, ?, ?, ?, ?, NOW())
         ");
-        $stmt->execute([$title, $slug, $category_id, $image_path, $content]);
+        $stmt->execute([$title, $slug, $category_id, $image_url, $content]);
         
         $article_id = $pdo->lastInsertId();
         
@@ -141,7 +152,7 @@ if ($method === 'GET') {
         }
         error_log("Database error: " . $e->getMessage());
         http_response_code(500);
-        echo json_encode(['status' => 'error', 'message' => 'خطای سرور در ذخیره اطلاعات']);
+        echo json_encode(['status' => 'error', 'message' => 'خطای سرور در ذخیره اطلاعات: ' . $e->getMessage()]);
     }
     
 } elseif ($method === 'DELETE') {
@@ -178,9 +189,12 @@ if ($method === 'GET') {
         $stmt->execute([$articleId]);
         
         if ($stmt->rowCount() > 0) {
-            // حذف فایل فیزیکی
-            if ($article['image_path'] && file_exists($article['image_path'])) {
-                unlink($article['image_path']);
+            // حذف فایل فیزیکی (تبدیل مسیر وب به مسیر فیزیکی)
+            if (!empty($article['image_path'])) {
+                $physical_path = '../' . $article['image_path'];
+                if (file_exists($physical_path)) {
+                    unlink($physical_path);
+                }
             }
             
             echo json_encode(['status' => 'success', 'message' => 'مقاله با موفقیت حذف شد']);
@@ -215,5 +229,26 @@ function generateSlug($text) {
     $text = trim($text, '-');
     
     return $text;
+}
+
+// تابع تولید slug یکتا
+function generateUniqueSlug($pdo, $title, $counter = 0) {
+    $base_slug = generateSlug($title);
+    $slug = $base_slug;
+    
+    if ($counter > 0) {
+        $slug = $base_slug . '-' . $counter;
+    }
+    
+    // بررسی وجود slug در دیتابیس
+    $stmt = $pdo->prepare("SELECT COUNT(*) as count FROM articles WHERE slug = ?");
+    $stmt->execute([$slug]);
+    $result = $stmt->fetch();
+    
+    if ($result['count'] > 0) {
+        return generateUniqueSlug($pdo, $title, $counter + 1);
+    }
+    
+    return $slug;
 }
 ?>

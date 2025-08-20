@@ -21,7 +21,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: url("../content/image/backgforadminpanel/cybercity8.gif")
+  background: url("../content/image/backgforadminpanel/classic.gif")
     no-repeat center center/cover;
   opacity: 0.15;
   z-index: 0;
@@ -195,6 +195,7 @@
   flex: 1;
   display: flex;
   flex-direction: column;
+  
 }
 
 .article-title {
@@ -207,6 +208,8 @@
   color: var(--gray);
   margin-bottom: 2rem;
   flex: 1;
+    word-wrap: break-word; /* برای مرورگرهای قدیمی */
+    overflow-wrap: break-word; /* استاندارد جدید */
 }
 
 .article-footer {
