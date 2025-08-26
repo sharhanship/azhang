@@ -1,4 +1,7 @@
 🌟 About Azhang Literary Society
+
+![logo](https://github.com/sharhanship/azhang/blob/main/azhangbaner.gif)
+
 Welcome to the official repository of Azhang Literary Society, a vibrant community dedicated to fostering literary arts, creative writing, and cultural exchange. Founded by passionate literature enthusiasts, Azhang serves as a platform for poets, writers, and literary critics to connect, learn, and grow together.
 
 🏛️ Project Overview
